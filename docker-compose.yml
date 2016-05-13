@@ -1,0 +1,14 @@
+app:
+  build: ./go
+  working_dir: /go/src/go
+  command: go run main.go
+  volumes:
+    - ./go:/go/src/go
+  links:
+    - database
+  environment:
+    - SERVICE_NAME=mongo-go-service
+    - DB_NAME=advanced-golang-db
+database:
+  image: mongo:3.0
+  command: mongod --smallfiles --quiet --logpath=/dev/null
