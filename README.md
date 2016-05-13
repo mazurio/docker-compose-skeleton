@@ -1,6 +1,6 @@
-# docker-compose
+# docker-compose-skeleton
 
-Go and Mongo with Docker Compose code reference.
+Skeleton for multiple services (Go, Node, Ruby &amp; Scala) using docker compose.
 
 # Usage
 
@@ -8,3 +8,14 @@ Go and Mongo with Docker Compose code reference.
 docker-compose up
 ```
 
+# Down
+
+```
+docker-compose down
+```
+
+# Check State
+
+```
+docker-compose ps
+```

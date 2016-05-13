@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+
+gem "sinatra"
+gem "require_all"
+gem "sinatra-json"
+gem "sinatra-reloader"
+gem "activesupport"
+
+group :test, :development do
+  gem "rspec"
+  gem "rack-test"
+end

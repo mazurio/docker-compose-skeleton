@@ -1,14 +1,39 @@
-app:
-  build: ./go
-  working_dir: /go/src/go
+go-service:
+  build: ./go-service
+  working_dir: /go-service/src/go
   command: go run main.go
+  ports:
+    - "4080:80"
   volumes:
-    - ./go:/go/src/go
+    - ./go-service:/go-service/src/go
   links:
     - database
   environment:
-    - SERVICE_NAME=mongo-go-service
-    - DB_NAME=advanced-golang-db
-database:
+    - SERVICE_NAME=go-service
+    - DB_NAME=go-service-mongodb
+
+node-service:
+  build: ./node-service
+  working_dir: /node-service/src
+  command: node index.js
+  ports:
+    - "4081:80"
+  volumes:
+    - ./node-service:/node-service/src
+  environment:
+    - SERVICE_NAME=node-service
+
+ruby-service:
+  build: ./ruby-service
+  working_dir: /ruby-service/src
+  command: ruby app.rb
+  ports:
+    - "4082:4567"
+  volumes:
+    - ./ruby-service:/ruby-service/src
+  environment:
+    - SERVICE_NAME=ruby-service
+
+go-database:
   image: mongo:3.0
   command: mongod --smallfiles --quiet --logpath=/dev/null
